@@ -1,0 +1,4 @@
+*NUMERICAL ANALYSIS
+
+** Bisection Method:
+http://www.mathcs.emory.edu/~cheung/Courses/170/Syllabus/07/bisection.html
