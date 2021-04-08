@@ -13,10 +13,9 @@
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
 
 
-def isInvalid(f,interval):  # Sanity check for input interval
+def is_invalid(f,interval):  # Sanity check for input interval
     if interval is None or  type(interval) != tuple or len(interval) != 2:
         return True
     a = interval[0]
@@ -27,6 +26,7 @@ def isInvalid(f,interval):  # Sanity check for input interval
 
 
 def plot_function(f, plot_interval):
+    import matplotlib.pyplot as plt
     if plot_interval[0] >= plot_interval[1]:
         print('INVALID INPUT PLOT_INTERVAL.')
         return
@@ -38,7 +38,7 @@ def plot_function(f, plot_interval):
 
 
 def bisection_find(f, interval, num_steps, error_threshold=0.001, plot=False, plot_interval=(-10,10)):
-    if isInvalid(f, interval): 
+    if is_invalid(f, interval): 
         print('INVALID INPUT INTERVAL.')
         return
 
