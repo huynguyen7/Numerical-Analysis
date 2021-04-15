@@ -4,6 +4,7 @@
 
     NAME: HUY NGUYEN
     *IMPLEMENTATION OF BISECTION METHOD
+    *ROOT-FINDING ALGORITHM.
     *If a function f(x) is CONTINUOS on the interval [a,b] with sgn(f(a)) != sgn(f(b)), then we can find an approximate root value of f(x) (find x with f(x) == 0)
 
     *NOTES: This implementation does not validate if a function f(x) is continuos
