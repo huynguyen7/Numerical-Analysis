@@ -5,6 +5,7 @@
     NAME: HUY NGUYEN
     *IMPLEMENTATION OF NEWTON-RAPHSON METHOD.
     *ROOT-FINDING ALGORITHM.
+    *This method might fail for bad initial x0.
 
 """
 
@@ -38,7 +39,6 @@ def newton_raphson(f=None, df=None, x0=0, error_rate=10e-3, num_steps=10, plot=T
         plt.grid()
         plt.plot(pts, f(pts), c='b')
         history = np.array(history)
-        print(history)
         plt.plot(history, f(history), 'r+')
         plt.show()
 
@@ -56,10 +56,10 @@ error_rate = 10e-5
 root = newton_raphson(
     f,
     df,
-    x0=-1,
+    x0=5,
     error_rate=error_rate,
-    num_steps=20,
-    plot=True,  # This plot does not work well..
+    num_steps=40,
+    plot=False,  # This plot does not work well..
     plot_range=[-15,15]
 )
 
