@@ -26,7 +26,7 @@ def newton_raphson(f=None, df=None, x0=0, error_rate=10e-3, num_steps=10, plot=T
             print(f'Exact solution: {x}')
             break
 
-        x = x-f(x)/df(x)
+        x = x-(f(x)/df(x))
         history.append(x)
 
         if np.abs(f(x)) <= error_rate:
@@ -34,10 +34,11 @@ def newton_raphson(f=None, df=None, x0=0, error_rate=10e-3, num_steps=10, plot=T
             break
 
     if plot:
-        pts = np.arange(plot_range[0], plot_range[1], 0.1)
+        pts = np.arange(plot_range[0], plot_range[1]+1, 0.1)
         plt.grid()
-        plt.plot(pts, f(pts), 'b')
+        plt.plot(pts, f(pts), c='b')
         history = np.array(history)
+        print(history)
         plt.plot(history, f(history), 'r+')
         plt.show()
 
@@ -45,16 +46,25 @@ def newton_raphson(f=None, df=None, x0=0, error_rate=10e-3, num_steps=10, plot=T
 
 
 """ INPUT FUNCTIONS """
-f = lambda x : x**3 - x**2 + x + 0.5
-df = lambda x : 3*(x**2) - 2*x + 1
+#f = lambda x : x**3 - x**2 + x + 0.5
+#df = lambda x : 3*(x**2) - 2*x + 1
+
+f = lambda x : 2*(x**2) - x**3 - 2
+df = lambda x : 4*x - 3*(x**2)
+error_rate = 10e-5
 
 root = newton_raphson(
     f,
     df,
-    x0=-10,
-    error_rate=10e-5,
+    x0=-1,
+    error_rate=error_rate,
     num_steps=20,
-    plot=True,
+    plot=True,  # This plot does not work well..
     plot_range=[-15,15]
 )
+
 print(f'ROOT = {root}')
+if np.abs(f(root)) > error_rate:
+    print('=> WRONG ROOT!')
+else:
+    print('=> CORRECT ROOT!')
