@@ -36,9 +36,10 @@ def newton_raphson(f=None, df=None, x0=0, error_rate=10e-3, num_steps=10, plot=T
 
     if plot:
         pts = np.arange(plot_range[0], plot_range[1]+1, 0.1)
-        plt.grid()
-        plt.plot(pts, f(pts), c='b')
         history = np.array(history)
+        plt.plot(pts, f(pts), c='b')
+        plt.grid()
+        plt.axis('equal')
         plt.plot(history, f(history), 'r+')
         plt.show()
 
@@ -46,11 +47,11 @@ def newton_raphson(f=None, df=None, x0=0, error_rate=10e-3, num_steps=10, plot=T
 
 
 """ INPUT FUNCTIONS """
-#f = lambda x : x**3 - x**2 + x + 0.5
-#df = lambda x : 3*(x**2) - 2*x + 1
+f = lambda x : x**3 - x**2 + x + 0.5
+df = lambda x : 3*(x**2) - 2*x + 1
 
-f = lambda x : 2*(x**2) - x**3 - 2
-df = lambda x : 4*x - 3*(x**2)
+#f = lambda x : 2*(x**2) - x**3 - 2
+#df = lambda x : 4*x - 3*(x**2)
 error_rate = 10e-5
 
 root = newton_raphson(
@@ -59,7 +60,7 @@ root = newton_raphson(
     x0=5,
     error_rate=error_rate,
     num_steps=40,
-    plot=False,  # This plot does not work well..
+    plot=True,  # This plot does not work well..
     plot_range=[-15,15]
 )
 
