@@ -4,9 +4,9 @@
 """
 
     NAME: HUY NGUYEN
-    *IMPLEMENTATION OF NEWTON-RAPHSON METHOD.
+    *IMPLEMENTATION OF SECANT METHOD.
     *ROOT-FINDING ALGORITHM.
-    *This method might fail for bad initial x0.
+    *Better than Newton-Raphson and Bisection Methods.
     *Secant method does not need f to be differentiable
 
 """
