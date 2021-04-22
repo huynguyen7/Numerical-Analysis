@@ -42,7 +42,8 @@ def secant_method(x0, x1, f, df, error_rate=1e-3, num_steps=10, plot=False, plot
             b = f(smaller_x)+a*smaller_x
             y = lambda x : a*x + b
             
-            pts = np.arange(smaller_x, larger_x, 0.01)
+            #pts = np.arange(smaller_x, larger_x, 0.01)
+            pts = np.arange(plot_range[0], plot_range[1], 0.1)
 
             plt.plot(pts, y(pts), linestyle='--', alpha=0.3, linewidth=1, color='mediumvioletred')
         pts = np.arange(plot_range[0], plot_range[1]+1, 0.1)
