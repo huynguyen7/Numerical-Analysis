@@ -7,7 +7,7 @@
     *Method for constructing new data points within the range of a discrete set of known data points (Wikipedia).
     *Polynomial interpolation.
     *Source:
-        +http://fourier.eng.hmc.edu/e176/lectures/ch7/node3.html
+        +http://fourier.eng.hmc.edu/e176/lectures/ch7/node4.html
         +https://en.wikipedia.org/wiki/Interpolation
 
 """
@@ -15,6 +15,7 @@
 
 import numpy as np
 from sympy import Symbol
+from sympy.solvers import solve
 
 
 def visualize(f=None, x=None, data=None, x_plot_range=[-10,10], y_plot_range=[-10,10]):
@@ -35,28 +36,23 @@ def visualize(f=None, x=None, data=None, x_plot_range=[-10,10], y_plot_range=[-1
     plt.show()
 
 
-def lagrange_basis(x ,i, data):
-    l_i = 1
-    for j in range(len(data)):
-        if j == i:
-            continue
-        else:
-            l_i *= (x-data[j][0])/(data[i][0]-data[j][0])
-    return l_i
-
-
-def lagrange_interpolation(x, data=None, log=False):
-    if data is None or len(data) == 0:
+def newton_interpolation(x, data=None, log=False):
+    if data is None or len(data) <= 1:
         print('INVALID INPUT.')
         return
 
-    L_n = 0
-    for i in range(len(data)):
-        L_n += data[i][1] * lagrange_basis(x, i, data)
+    n_i = 1*(x**0)
+    N_n = data[0][1]*(x**0)
+    c = Symbol('c')
+    for i in range(1, len(data)):
+        n_i *= x - data[i-1][0]
+        a_i = solve(N_n.subs(x, data[i][0]) + c*(n_i.subs(x, data[i][0])) - data[i][1], c)
+        N_n += a_i[0]*n_i
 
     if log:
-        print(L_n.expand())
-    return L_n
+        print(N_n)
+    return N_n
+    
 
 
 ''' PARAMS '''
@@ -64,5 +60,5 @@ x = Symbol('x')  # Used with sympy function
 data = np.array([[-1,1.937],[0,1],[1,1.349],[2,-0.995]])
 
 # APPLY LAGRANGE POLYNOMIAL
-f = lagrange_interpolation(x, data, log=True)
+f = newton_interpolation(x, data, log=False)
 visualize(f, x, data, x_plot_range=[-20,20], y_plot_range=[-20,20])
