@@ -4,6 +4,7 @@ This repository contains examples for Numerical Analysis Algorithms:
     + Bisection Method.
     + Newton-Raphson Method.
     + Secant Method.
-- Polynomial Interpolation:
+- Spline Interpolation
+- Polynomial Interpolation(_DRAWBACK_: Could be `Overfitting`):
     + Lagrange Interpolation
     + Newton Interpolation

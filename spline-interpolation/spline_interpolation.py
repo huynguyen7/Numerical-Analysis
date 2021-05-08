@@ -5,9 +5,9 @@
 
     NAME: HUY NGUYEN
     *Method for constructing new data points within the range of a discrete set of known data points (Wikipedia).
-    *Polynomial interpolation.
+    *Spline interpolation.
     *Source:
-        +http://fourier.eng.hmc.edu/e176/lectures/ch7/node3.html
+        +http://fourier.eng.hmc.edu/e176/lectures/ch7/node6.html
         +https://en.wikipedia.org/wiki/Interpolation
 
 """
@@ -35,20 +35,8 @@ def visualize(f=None, x=None, data=None, x_plot_range=[-10,10], y_plot_range=[-1
     plt.show()
 
 
-def lagrange_basis(x ,i, data):
-    l_i = 1
-    for j in range(len(data)):
-        if j == i:
-            continue
-        else:
-            l_i *= (x-data[j][0])/(data[i][0]-data[j][0])
-    return l_i
-
-
-def lagrange_interpolation(x, data=None, log=False):
-    if data is None or len(data) == 0:
-        print('INVALID INPUT.')
-        return
+def spline_interpolation(x, data=None, log=False):
+    assert data is not None or len(data) != 0, 'INVALID INPUT.'
 
     L_n = 0
     for i in range(len(data)):
@@ -63,6 +51,6 @@ def lagrange_interpolation(x, data=None, log=False):
 x = Symbol('x')  # Used with sympy function
 data = np.array([[-1,1.937],[0,1],[-0.5,0.1],[1,1.349],[2,-0.995]])
 
-# APPLY LAGRANGE POLYNOMIAL
-f = lagrange_interpolation(x, data, log=True)
+# APPLY SPLINE INTERPOLATION
+f = spline_interpolation(x, data, log=True)
 visualize(f, x, data, x_plot_range=[-20,20], y_plot_range=[-20,20])

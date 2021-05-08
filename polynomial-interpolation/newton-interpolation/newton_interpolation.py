@@ -6,6 +6,7 @@
     NAME: HUY NGUYEN
     *Method for constructing new data points within the range of a discrete set of known data points (Wikipedia).
     *Polynomial interpolation.
+    *Needs to sort input data points (x,y) using x.
     *Source:
         +http://fourier.eng.hmc.edu/e176/lectures/ch7/node4.html
         +https://en.wikipedia.org/wiki/Interpolation
@@ -26,7 +27,7 @@ def visualize(f=None, x=None, data=None, x_plot_range=[-10,10], y_plot_range=[-1
     y_pts = np.array([f.subs(x, X) for X in x_pts])
     import matplotlib.pyplot as plt
     plt.grid()
-    plt.title('Lagrange polynomial')
+    plt.title('Newton polynomial')
     plt.xlabel('x')
     plt.ylabel('y')
     plt.plot(x_pts, y_pts, c='Blue')
@@ -40,6 +41,7 @@ def newton_interpolation(x, data=None, log=False):
     if data is None or len(data) <= 1:
         print('INVALID INPUT.')
         return
+    data.sort(key=lambda x: x[0])  # Sort data points (x,y) based on x.
 
     n_i = 1*(x**0)
     N_n = data[0][1]*(x**0)
@@ -54,11 +56,10 @@ def newton_interpolation(x, data=None, log=False):
     return N_n
     
 
-
 ''' PARAMS '''
 x = Symbol('x')  # Used with sympy function
 data = np.array([[-1,1.937],[0,1],[1,1.349],[2,-0.995]])
 
 # APPLY LAGRANGE POLYNOMIAL
-f = newton_interpolation(x, data, log=False)
+f = newton_interpolation(x, data, log=True)
 visualize(f, x, data, x_plot_range=[-20,20], y_plot_range=[-20,20])

@@ -77,4 +77,4 @@ a,b,root = bisection_find(
     plot=True,  # True will plot the function
     plot_interval=(-10,10))
 
-print(f'ROOT OF THE FUNCTION: {root} -> INTERVAL ({a},{b})')
+print(f'ROOT OF THE FUNCTION: {round(root,3)} -> INTERVAL ({a},{b})')
