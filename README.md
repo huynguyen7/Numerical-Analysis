@@ -7,4 +7,4 @@ This repository contains examples for Numerical Analysis Algorithms:
 - Polynomial Interpolation(`DRAWBACK`: Could be _Overfitting_):
     + Lagrange Interpolation
     + Newton Interpolation
-- Trapzoid (Calculate area under the curve).
+- Trapzoid (Approximate area under the curve given function _f(x)_, interval _[a,b]_, number of split chunks _n_).
