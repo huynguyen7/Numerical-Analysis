@@ -1,4 +1,5 @@
 import numpy as np
+from tqdm import tqdm
 
 """
 
@@ -25,7 +26,7 @@ def trapzoidal(f, a, b, n):
     area = 0.0
     intervals = np.linspace(a,b,n)
     intervals = list(zip(intervals[:-1], intervals[1:]))
-    for (a, b) in intervals:
+    for (a, b) in tqdm(intervals):
         area += (b-a)*(f(a)+f(b))/2.0
     return area
 

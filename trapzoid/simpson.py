@@ -1,4 +1,5 @@
 import numpy as np
+from tqdm import tqdm
 
 """
 
@@ -26,7 +27,7 @@ def simpson(f, a, b, n):
     intervals = np.linspace(a,b,n)
     intervals = list(zip(intervals[:-1], intervals[1:]))
 
-    for (a, b) in intervals:
+    for (a, b) in tqdm(intervals):
         area += (b-a)*(f(a)+4.0*f((a+b)/2.0)+f(b))/6.0
     return area
 
